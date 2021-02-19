@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates practice</title>
+  <style>
+    body {
+      background-color: black;
+    }
+    .target-image {
+      color: white;
+      position: absolute;
+    }
+    .target-text {
+      color: white;
+      position: absolute;
+    }
+    .horizontal {
+      position: absolute;
+      border-top: solid 1px white;
+      width: 100vw;
+    }
+    .vertical {
+      position: absolute;
+      border-left: solid 1px white;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="target-image">
+    <img src="img/target.png" alt="target">
+  </div>
+  <div class="target-text"></div>
+
+  <div class="horizontal">t</div>
+  <div class="vertical"></div>
+
+  <script>
+    
+    window.addEventListener('mousemove', e => {
+      const targetImg = document.querySelector('.target-image');
+      targetImg.style.left = e.clientX - 60 + 'px';
+      targetImg.style.top = e.clientY - 60 + 'px';
+
+      const targetText = document.querySelector('.target-text')
+      targetText.style.left = e.clientX + 50 + 'px';
+      targetText.style.top = e.clientY + 10 + 'px';
+      targetText.innerHTML = `
+        ${e.clientX}px, ${e.clientY}px
+      `
+      const horizontal = document.querySelector('.horizontal');
+      horizontal.style.top = e.clientY + 'px';
+      
+      const vertical = document.querySelector('.vertical');
+      vertical.style.left = e.clientX + 'px';
+    })
+
+  </script>
+</body>
+</html>

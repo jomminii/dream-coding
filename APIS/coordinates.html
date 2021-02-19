@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates</title>
+  <style>
+    body {
+      background-color: black;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+    .box {
+      display: inline-block;
+      background-color: thistle;
+      margin: 1px;
+      width: 150px;
+      height: 150px;
+    }
+    .target {
+      background-color: orange;
+    }
+    aside {
+      position: fixed;
+      top: 1px;
+      right: 5px;
+      
+    }
+
+  </style>
+</head>
+<body>
+  <aside>
+    <button class="scroll-by" onclick="scroll(0,100)">scroll by 100px</button>
+    <button class="scroll-to">scroll to 100px</button>
+    <button class="scroll-into">scroll to target</button>
+  </aside>
+  <div class="container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box target"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <script>
+    const scrollBy = document.querySelector('.scroll-by');
+    // scrollBy.addEventListener('click', () => {window.scrollBy(0,100)});
+    scrollBy.addEventListener('click', () => {window.scrollBy(
+      {
+        top:100,
+        left:0,
+        behavior: 'smooth'})});
+
+    const scrollTo = document.querySelector('.scroll-to');
+    scrollTo.addEventListener('click', () => {window.scrollTo(0, 100)})
+    
+    const scrollInto = document.querySelector('.scroll-into');
+    scrollInto.addEventListener('click', () => {target.scrollIntoView(
+    )})
+    const target = document.querySelector('.target');
+    function printCoordinates (e) {
+      const rect = target.getBoundingClientRect();
+      console.log(rect)
+      target.innerHTML = `
+        client x : ${e.clientX} </br>
+        client y : ${e.clientY} </br>
+        page x : ${e.pageX} </br>
+        page y : ${e.pageY} </br>
+      `
+    };
+    target.addEventListener('click', (e) => { printCoordinates(e)});
+
+  </script>
+</body>
+</html>
